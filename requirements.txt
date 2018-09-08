@@ -1,0 +1,5 @@
+VLFeat
+http://www.vlfeat.org
+
+Visual C++ Redistributable for Visual Studio 2015
+https://www.microsoft.com/en-ca/download/details.aspx?id=48145
