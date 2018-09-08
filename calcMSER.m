@@ -1,6 +1,6 @@
 function calcMSER(videoFile, config)
 
-run('./vlfeat-0.9.21/toolbox/vl_setup.m');
+run('./vlfeat/toolbox/vl_setup.m');
 
 [strPath,strFile] = fileparts(videoFile);
 config.sequence = videoFile;
