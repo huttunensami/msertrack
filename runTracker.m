@@ -1,5 +1,5 @@
 %% Set input file
-video = '.\C216-ph_A1\C216-ph_A1_raw.avi';
+video = '.\videos\video.avi';
 
 %% Load configuration
 load('config.mat');
