@@ -293,6 +293,11 @@ for i=(startFrame+config.freq):config.freq:startFrame+NumberOfFrames-1
    [ xs,ys,bboxs,boxInit,ccInit ] = CreateMeasurements( mask );
    NumberOfDetections = length(xs);
    
+   if NumberOfDetections < 1
+      disp('Continue to next frame ->')
+      continue
+   end
+   
    z=[xs ys]';
    
    disp(['Number of Measurements: ' int2str(size(z,2))])
@@ -567,12 +572,15 @@ for i=(startFrame+config.freq):config.freq:startFrame+NumberOfFrames-1
       vx = 0;
       vy = 0;
       %Rn = r;
-      var = covar(:,:,k);
+      
+      %var = covar(:,:,k);
+      %varx = max( r(1,1), min(mw/4,var(1,1)) );
+      %vary = max( r(2,2), min(mh/4,var(2,2)) );
+      varx = max( r(1,1), mw/4 );
+      vary = max( r(2,2), mh/4 );
       %       varx = min(mw/4,var(1,1));
       %       vary = min(mh/4,var(2,2));
-      varx = max( r(1,1), min(mw/4,var(1,1)) );
-      vary = max( r(2,2), min(mh/4,var(2,2)) );
-      
+            
       Rn = diag([varx vary]);
       %Rn = covar(:,:,k);
       objectsTotal = objectsTotal + 1;

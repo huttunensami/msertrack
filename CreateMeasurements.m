@@ -4,6 +4,11 @@ function [ x,y,bbox,boxInit, ccInit ] = CreateMeasurements( imgProb )
 
 EnableVisualization = 0;
 
+x = [];
+y = [];
+bbox = [];
+boxInit = [];
+
 binImg = imgProb>0;
 width = size(binImg,2);
 height = size(binImg,1);
@@ -56,9 +61,14 @@ if EnableVisualization
 end
 
 xy=cat(1,stats.Centroid);
-   
-x=xy(:,1);
-y=xy(:,2);
+
+if isempty(xy)
+   disp('No objects found!')
+   return
+else
+   x=xy(:,1);
+   y=xy(:,2);
+end
 
 BoundingBoxes=cat(1,stats.BoundingBox);
 bbox=BoundingBoxes;

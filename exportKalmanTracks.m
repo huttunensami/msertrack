@@ -86,22 +86,37 @@ for i=1:config.freq:NumberOfFrames
    objectCount(i) = maskcCC.NumObjects;
    
    %% Open tracking data
-   x = matObj.x;
-   targetBox = matObj.targetBox;
-   objects = matObj.objects;
-   objColors = matObj.objColors;
+   if exist(matFile)
+      x = matObj.x;
+      % targetBox = matObj.targetBox;
+      objects = matObj.objects;
+      objColors = matObj.objColors;
 
-   xc = x(1,:);
-   yc = x(3,:);
-   u = x(2,:);
-   v = x(4,:);
-   
-%    xc = max(uint32(xc),1);
-%    yc = max(uint32(yc),1);
-   
-   NumberOfObjects = size(x,2);
+      xc = x(1,:);
+      yc = x(3,:);
+      u = x(2,:);
+      v = x(4,:);
+
+   %    xc = max(uint32(xc),1);
+   %    yc = max(uint32(yc),1);
+
+      NumberOfObjects = size(x,2);
+   else
+      % targetBox = [];
+      objects = [];
+      objColors = [];
+
+      xc = [];
+      yc = [];
+      u = [];
+      v = [];
+
+   %    xc = max(uint32(xc),1);
+   %    yc = max(uint32(yc),1);
+      NumberOfObjects = 0;
+   end
+
    trackCount(i) = NumberOfObjects;
-   
    disp([' Number of tracked cells: ' num2str(NumberOfObjects)]);
    
    I = read(obj, i);

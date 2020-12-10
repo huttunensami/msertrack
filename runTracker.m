@@ -1,8 +1,12 @@
 %% Set input file
-video = '.\videos\video.avi';
+if ~exist('video', 'var')
+   video = '.\videos\video.avi';
+end
 
 %% Load configuration
-load('config.mat');
+if ~exist('config', 'var')
+   load('config.mat');
+end
 
 %% Run MSER segmentation
 calcMSER(video, config );
